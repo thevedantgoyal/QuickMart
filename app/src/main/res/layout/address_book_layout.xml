@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/transparent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="13.00dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="13.00dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                >
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxCornerRadiusBottomEnd="16.90dp"
+                    app:boxCornerRadiusTopStart="16.90dp"
+                    app:boxCornerRadiusTopEnd="16.90dp"
+                    android:enabled="false"
+                    app:boxCornerRadiusBottomStart="16.90dp"
+                    app:cursorColor="@color/yellow"
+                    app:endIconMode="clear_text"
+                    app:hintTextColor="@color/yellow"
+                    android:layout_marginTop="20.0dp"
+                    android:layout_marginHorizontal="13.00dp"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tvChangeAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textStyle="bold"
+                        android:drawablePadding="9.10dp"
+                        android:hint="Your Address"
+                        android:inputType="text"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:layout_marginHorizontal="13.00dp"
+                    android:layout_marginTop="13.00dp"
+                    android:orientation="horizontal"
+                    >
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnEditProduct"
+                        android:layout_width="match_parent"
+                        android:layout_height="58.50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_marginEnd="7.00dp"
+                        android:backgroundTint="@color/yellow"
+                        android:text="Edit"
+                        android:fontFamily="@font/averia_gruesa_libre"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_16ssp"
+                        app:cornerRadius="10.44dp"
+                        android:textAllCaps="false"
+                        />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSaveProduct"
+                        android:layout_width="match_parent"
+                        android:layout_height="58.50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="7.00dp"
+                        android:layout_weight="0.5"
+                        android:backgroundTint="@color/yellow"
+                        android:text="Save"
+                        android:fontFamily="@font/averia_gruesa_libre"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_16ssp"
+                        app:cornerRadius="10.44dp"
+                        android:textAllCaps="false"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

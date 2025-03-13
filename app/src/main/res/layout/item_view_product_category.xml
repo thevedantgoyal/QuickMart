@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainProduct"
+   >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_8sdp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivCategory"
+            android:layout_width="@dimen/_62sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:background="@drawable/bg_category"
+            android:scaleType="fitCenter"
+            android:src="@drawable/vegetable" />
+
+        <TextView
+            android:id="@+id/tvCategoryText"
+            android:layout_width="@dimen/_61sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/averia_gruesa_libre"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="Vegetables and Fruits"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_8ssp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

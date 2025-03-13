@@ -1,0 +1,7 @@
+<!-- res/drawable/bg_see_all.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FBF5F5" /> <!-- Background color -->
+    <corners android:radius="8dp" /> <!-- Optional rounded corners -->
+    <stroke android:color="@color/black" android:width="@dimen/_1sdp"/>
+</shape>

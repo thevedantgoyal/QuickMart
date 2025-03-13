@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.CategoryFragment">
+
+    <LinearLayout
+        android:id="@+id/llcategoryTitle"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@color/cream"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <ImageView
+            android:id="@+id/categoryBackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/noun_back_6047897"
+            android:layout_marginTop="19.00dp"
+            android:layout_marginStart="16dp"
+        />
+        <TextView
+            android:id="@+id/categoryTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vegetables and Fruits"
+            android:textSize="@dimen/_17ssp"
+            android:fontFamily="@font/averia_gruesa_libre"
+            android:textStyle="bold"
+            android:layout_marginTop="18.00dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="13.00dp"
+            />
+        <ImageView
+            android:id="@+id/searchIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/search_icon"
+            android:layout_marginTop="19.00dp"
+            android:layout_marginStart="@dimen/_78sdp"
+            />
+    </LinearLayout>
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llcategoryTitle">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <include layout="@layout/item_view_shimmer"/>
+            <include layout="@layout/item_view_shimmer"/>
+            <include layout="@layout/item_view_shimmer"/>
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProducts"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_margin="@dimen/_6sdp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llcategoryTitle"
+        android:orientation="vertical"
+        app:spanCount="2"
+        />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tvText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="No products added in this category!"
+        android:textStyle="bold"
+        android:textColor="#C08E06"
+        android:fontFamily="@font/averia_gruesa_libre"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

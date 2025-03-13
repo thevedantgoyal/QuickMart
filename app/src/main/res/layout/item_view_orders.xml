@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="7.00dp"
+        app:cardUseCompatPadding="true"
+        android:elevation="0dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="13.00dp"
+            >
+
+            <LinearLayout
+                android:id="@+id/llDateStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="6.50dp"
+                android:weightSum="1"
+                >
+                <TextView
+                    android:id="@+id/tvOrderDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10-11-2024"
+                    android:textSize="16.90dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/averia_gruesa_libre"
+                    android:textColor="@color/blue"
+                    android:layout_weight="0.7"
+                    android:layout_gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/tvOrderStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24.00dp"
+                    android:text="Delivered"
+                    android:background="@drawable/bg_border_status"
+                    android:backgroundTint="@color/yellow"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/averia_gruesa_libre"
+                    android:layout_weight="0.3"
+                    android:gravity="center"
+                    android:textSize="16.90dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="18.00dp"
+                android:layout_marginBottom="7.00dp"
+                >
+                <TextView
+                    android:id="@+id/tvOrderTitles"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Vegetables and Fruits , Dairy Breakfast , Cold Drinks and juices and Drinks"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:layout_weight="0.75"
+                    android:textColor="@color/black"
+                    android:textSize="16.90dp"
+                    android:fontFamily="@font/averia_gruesa_libre"
+                    />
+                <TextView
+                    android:id="@+id/tvOrderPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:text="₹500"
+                    android:textColor="@color/green"
+                    android:textSize="17.90dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

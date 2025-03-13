@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FDFDFB"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Products in the Cart"
+            android:textStyle="bold"
+            android:layout_marginTop="10.00dp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:fontFamily="@font/averia_gruesa_libre"
+            android:layout_gravity="center"
+            android:textColor="#725812"
+            android:textSize="@dimen/_15ssp"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvProductItems"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
+        <LinearLayout
+            android:visibility="visible"
+            android:id="@+id/llCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:background="@drawable/bg_edit"
+            android:padding="13.00dp"
+            android:weightSum="1"
+            android:layout_margin="10.00dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:id="@+id/llItemCart"
+                android:layout_width="match_parent"
+                android:layout_height="30.00dp"
+                android:orientation="horizontal"
+                android:layout_weight="0.5"
+                >
+
+                <ImageView
+                    android:id="@+id/ivProductImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3.90dp"
+                    android:background="@drawable/bg__see_all"
+                    android:src="@drawable/check_out_icon" />
+
+                <TextView
+                    android:id="@+id/tvCartCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="13.00dp"
+                    android:fontFamily="@font/averia_gruesa_libre"
+                    android:text="0"
+                    android:textSize="16.00sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="4.00dp"
+                    android:fontFamily="@font/averia_gruesa_libre"
+                    android:text="ITEM"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llNextBtn"
+                android:layout_width="@dimen/_240sdp"
+                android:layout_height="32.00dp"
+                android:background="@drawable/bg_productcount_edit"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_weight="0.5"
+                >
+                <TextView
+                    android:id="@+id/tvAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Next"
+                    android:fontFamily="@font/averia_gruesa_libre"
+                    android:textColor="@color/white"
+                    android:textSize="16.90sp"
+                    android:textStyle="bold"
+                    />
+                <ImageView
+                    android:layout_width="14.50dp"
+                    android:layout_height="14.50dp"
+                    android:src="@drawable/right_chevron_2"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
