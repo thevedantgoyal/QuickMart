@@ -2,6 +2,7 @@ package com.example.quickmart.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -39,6 +40,11 @@ class AdapterOrders(val context: Context, val orderItemViewClicked: (OrderItems)
     override fun onBindViewHolder(holder: OrdersViewHolder, position: Int) {
         val order = differ.currentList[position]
         holder.binding.apply {
+            if (order == null) {
+                holder.itemView.visibility = View.GONE  // Hide empty items
+            } else {
+                holder.itemView.visibility = View.VISIBLE
+            }
             tvOrderDate.text = order.itemDate
             tvOrderTitles.text = order.itemTitle
             tvOrderPrice.text = "₹${order.itemPrice.toString()}"

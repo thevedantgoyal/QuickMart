@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
@@ -12,7 +12,8 @@
         app:layout_constraintTop_toTopOf="parent"
         android:backgroundTint="@color/white"
         app:cardCornerRadius="7.00dp"
-        app:cardUseCompatPadding="true"
+        android:layout_marginTop="10.00dp"
+        app:cardUseCompatPadding="false"
         android:elevation="0dp"
         >
         <LinearLayout
@@ -27,12 +28,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="6.50dp"
-                android:weightSum="1"
+                android:layout_marginTop="0dp"
                 >
                 <TextView
                     android:id="@+id/tvOrderDate"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="10-11-2024"
                     android:textSize="16.90dp"
@@ -45,7 +45,7 @@
 
                 <TextView
                     android:id="@+id/tvOrderStatus"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="24.00dp"
                     android:text="Delivered"
                     android:background="@drawable/bg_border_status"
@@ -65,8 +65,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="1"
-                android:layout_marginTop="18.00dp"
-                android:layout_marginBottom="7.00dp"
+                android:layout_marginTop="8.00dp"
+                android:layout_marginBottom="4.00dp"
                 >
                 <TextView
                     android:id="@+id/tvOrderTitles"

@@ -134,14 +134,13 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
 
     fun getOrderedProducts(orderId : String) : Flow<List<cartProducts>> = callbackFlow{
-        val db = FirebaseDatabase.getInstance().getReference("Admins").child("Orders").child("orderId")
+        val db = FirebaseDatabase.getInstance().getReference("Admins").child("Orders").child(orderId)
         val eventListener = object  : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val order = snapshot.getValue(Orders::class.java)
-                trySend(order?.orderList!!)
-
+                val productList = order?.orderList ?: emptyList()
+                trySend(productList)
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
@@ -246,7 +245,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     fun fetchProductType() : Flow<List<bestSeller>> = callbackFlow {
         val db = FirebaseDatabase.getInstance().getReference("Admins/ProductType")
-
         val eventListener = object  : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val productTypeList = ArrayList<bestSeller>()
@@ -269,7 +267,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
                 trySend(productTypeList)
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
@@ -278,8 +275,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         awaitClose{ db.removeEventListener(eventListener) }
 
     }
-
-
     fun saveAddressinFireBase(address: String){
         FirebaseDatabase.getInstance().getReference("AllUsers").child("Users").child(utils.getCurrentUserid()!! ).child("userAddress").setValue(address)
     }
@@ -287,9 +282,4 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun LogOutUser(){
         FirebaseAuth.getInstance().signOut()
     }
-
-    // Retrofit
-
-
-
 }

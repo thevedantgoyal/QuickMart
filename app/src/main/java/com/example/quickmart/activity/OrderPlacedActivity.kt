@@ -82,52 +82,6 @@ class OrderPlacedActivity : AppCompatActivity() , PaymentResultWithDataListener 
     }
 
 
-//    private fun initializePhonepay() {
-//
-//        val data = JSONObject()
-//        PhonePe.init(this,PhonePeEnvironment.SANDBOX, Constants.MERCHANTID, "")
-//
-//        data.put("merchantId" , Constants.MERCHANTID)
-//        data.put( "merchantTransactionId" , Constants.merchantTransactionId)
-//        data.put("amount" , 200)
-////        data.put("merchantUserId" , System.currentTimeMillis().toString())
-//        data.put("mobileNumber" , "7007593142")
-//        data.put("callbackUrl" , "https://webhook.site/callback-url")
-//        // CHANGE HERE
-//
-//
-//        val paymentInstruction = JSONObject()
-//
-//        paymentInstruction.put("type" ,  "UPI_INTENT")
-//        paymentInstruction.put("targetApp" , "com.phonepe.simulator")
-//
-//        data.put("paymentInstruction " , paymentInstruction)
-//
-//        val deviceContext = JSONObject()
-//            deviceContext.put("deviceOS" ,"ANDROID")
-//            data.put("deviceContext" , deviceContext)
-//
-//        val payloadBase64 = Base64.encodeToString(
-//            data.toString().toByteArray(Charset.defaultCharset()) , Base64.NO_WRAP
-//        )
-//
-//        val checkSum = sha256(payloadBase64 + Constants.API_ENDPOINT + Constants.SALT_KEY ) + "###1";
-//
-//         b2BPGRequest = B2BPGRequestBuilder()
-//            .setData(payloadBase64)
-//            .setChecksum(checkSum)
-//            .setUrl(Constants.API_ENDPOINT)
-//            .build()
-//        }
-
-//    private fun sha256(input : String) : String{
-//        val bytes = input.toByteArray(Charsets.UTF_8)
-//        val md = MessageDigest.getInstance("SHA-256")
-//        val digest = md.digest(bytes)
-//        return digest.fold(""){str , it-> str + "%02x".format(it)}  // CHANGE HERE
-//    }
-
-
     // basically this function is used to check when user is placed order first time so we save his address in firebase
     // and then after second time same user placed the order we redirect to phonepay integration.
     private fun onPlacedOrderClicked() {
@@ -186,63 +140,6 @@ class OrderPlacedActivity : AppCompatActivity() , PaymentResultWithDataListener 
         }
     }
 
-//    val phonePayView = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-//        if(it.resultCode == RESULT_OK){
-//            checkStatus()
-//        }
-//    }
-
-//    private fun checkStatus() {
-//        val xVerify = sha256("/pg/v1/status/${Constants.MERCHANTID}/${Constants.merchantTransactionId}${Constants.SALT_KEY}") + "###1"
-//        val headers = mapOf(
-//            "Content-Type" to "application/json",
-//            "X-VERIFY" to xVerify,
-//            "X-MERCHANT-ID" to Constants.MERCHANTID,
-//
-//        )
-//        lifecycleScope.launch {
-//            viewModel.checkPayment(headers)
-//            viewModel.paymentStatus.collect{status->
-//                if(status){
-//                    utils.showToast(this@OrderPlacedActivity , "Payment Successful")
-//
-//                    // before we have to save order in firebase what we have ordered
-//                    saveOrder()
-//
-//                    // we also delete the cart product after payment done  which is saved in the order cart
-//                    viewModel.deleteCartProduct()
-//                    // after we delete the cart the count also deleted
-//                    viewModel.savingItemCartCount(0)
-//                    // we hide the cart also after all process done
-//                    cartListener?.hideCartLayouts()
-//
-//                    utils.hideDialog()
-//                    val intent = Intent(this@OrderPlacedActivity , OrderPlacedActivity::class.java)
-//                    startActivity(intent)
-//                    finish()
-//                }
-//                else
-//                {
-//                    utils.showToast(this@OrderPlacedActivity , "Payment Failed")
-//                }
-//            }
-//        }
-//    }
-
-//    private fun getPaymmentView() {
-//        try {
-//            PhonePe.getImplicitIntent(this , b2BPGRequest , "com.phonepe.simulator")
-//                .let {
-//                    Log.d("phonepe" , "try me gya")
-//                    phonePayView.launch(it)
-//                }
-//        }
-//        catch (e : PhonePeInitException){
-//            Log.d("phonepe" , "catch  - ${e.message.toString()}")
-//            utils.showToast(this , "e.message.toString()")
-//        }
-//
-//    }
 
     private fun saveOrder() {
         viewModel.getAll().observe(this){cartProductList->
@@ -271,20 +168,6 @@ class OrderPlacedActivity : AppCompatActivity() , PaymentResultWithDataListener 
         }
     }
 
-
-
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//
-//        if (requestCode == 1) {
-//            /*This callback indicates only about completion of UI flow.
-//                   Inform your server to make the transaction
-//                   status call to get the status. Update your app with the
-//                   success/failure status.*/
-//
-//            utils.showToast(this , "money")
-//        }
-//    }
 
     private fun savedUserAddress(alertDialog: AlertDialog, userAddress: UserAddressBinding) {
         utils.showDialog(this , "Processing...")
@@ -359,89 +242,6 @@ class OrderPlacedActivity : AppCompatActivity() , PaymentResultWithDataListener 
         finish()
     }
 
-    private fun onAddBtnClicked(product: Product, productBinding: ItemProductDetailsBinding){
-        productBinding.tvProductEdit.visibility = View.GONE
-        productBinding.llproductCount.visibility = View.VISIBLE
-
-        // Step - 1 ( when we click on add btn we visible the count of products and updated it
-        // and also pass this count to item cart to updated there because it shows in all the screen)
-        var itemCount = productBinding.tvProductCount.text.toString().toInt()
-        itemCount++
-
-        productBinding.tvProductCount.text = itemCount.toString()
-
-        cartListener?.showCartLayout(1)
-
-        // Step - 2 ( to save this information on room Database and firebase  )
-        product.itemCount = itemCount
-        lifecycleScope.launch {
-            cartListener?.savingItemCartCount(1)
-            saveProductInRoom(product)
-            viewModel.updateItemCount(product , itemCount)
-        }
-    }
-
-    private fun onIncrementBtnClicked(product: Product, productBinding: ItemProductDetailsBinding){
-        var itemCountIncre = productBinding.tvProductCount.text.toString().toInt()
-        itemCountIncre++
-
-        if(product.productStock!! + 1 > itemCountIncre){
-            productBinding.tvProductCount.text = itemCountIncre.toString()
-
-            cartListener?.showCartLayout(1)
-
-            // step - 2
-
-            product.itemCount = itemCountIncre
-            lifecycleScope.launch {
-                cartListener?.savingItemCartCount(1)
-                saveProductInRoom(product)
-                viewModel.updateItemCount(product , itemCountIncre)
-            }
-        }
-        else{
-            utils.showToast(this, "Product is Out Of Stock!")
-        }
-
-
-    }
-
-    private fun onDecrementBtnClicked(product: Product, productBinding: ItemProductDetailsBinding){
-        var itemCountDecre = productBinding.tvProductCount.text.toString().toInt()
-        itemCountDecre--
-
-
-        /* we use this before because at we decrement the only one item in the cart like one to zero
-        * so this lines of code add the product with zero item count at the room database but after
-        * else condition also hit else itemcount = 0 so as else condition hit the deleteitemcart funct is call and
-        * delete the product from the room database  */
-
-
-        product.itemCount = itemCountDecre
-        lifecycleScope.launch {
-            cartListener?.savingItemCartCount(-1)
-            saveProductInRoom(product)
-            viewModel.updateItemCount(product , itemCountDecre)
-        }
-
-
-        if(itemCountDecre > 0){
-            productBinding.tvProductCount.text = itemCountDecre.toString()
-        }
-        else{
-            lifecycleScope.launch { viewModel.deleteCartProduct(product.productRandomId!!) }
-            Log.d("VV" , "vv = ${product.productRandomId!!}")
-            productBinding.tvProductEdit.visibility = View.VISIBLE
-            productBinding.llproductCount.visibility = View.GONE
-            productBinding.tvProductCount.text = "0"
-        }
-        cartListener?.showCartLayout(-1)
-
-
-        // step - 2
-
-    }
-
     private fun saveProductInRoom(product: Product) {
         val cartProduct = cartProducts(
             productId = product.productRandomId.toString(),
@@ -473,7 +273,7 @@ class OrderPlacedActivity : AppCompatActivity() , PaymentResultWithDataListener 
             cartListener?.hideCartLayouts()
 
             utils.hideDialog()
-            val intent = Intent(this@OrderPlacedActivity , OrderPlacedActivity::class.java)
+            val intent = Intent(this@OrderPlacedActivity , UserMainActivity::class.java)
             startActivity(intent)
             finish()
         }
